@@ -1,1 +1,6 @@
-{"name":"Etch Halftone","id":"com.polygon.etch","version":"1.0.0","description":"Vector generator","main":"src/plugin.js","permissions":["content:read","content:write"]}
+{
+  "name": "Etch Minimal",
+  "id": "etch-plugin-123",
+  "version": "1.0.0",
+  "main": "index.html"
+}
