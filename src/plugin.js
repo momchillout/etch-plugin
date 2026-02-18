@@ -1,66 +1,45 @@
-/* ETCH - BACKEND LOGIC (The Brain) */
-
+/* MOZAK PLUGINA */
 penpot.ui.open("Etch Halftone", `?theme=${penpot.theme}`, {
   width: 320,
   height: 600
 });
 
-// Slušamo poruke iz UI-ja (index.html)
-penpot.ui.onMessage(async (message) => {
+penpot.ui.onMessage((message) => {
   if (message.type === 'create-svg') {
-    const { svgString, width, height } = message;
-
-    if (!svgString) return;
-
-    // Kreiramo grupu za vektor
-    const group = penpot.createShapeFromSvg(svgString);
-    
+    const group = penpot.createShapeFromSvg(message.svgString);
     if (group) {
       group.name = "Etch Vector";
-      group.x = penpot.viewport.center.x - (width / 2);
-      group.y = penpot.viewport.center.y - (height / 2);
-      
-      // Selektujemo novi oblik
+      group.x = penpot.viewport.center.x - (message.width / 2);
+      group.y = penpot.viewport.center.y - (message.height / 2);
       penpot.selection = [group];
     }
   }
 });
 
-// Kada korisnik klikne na nešto u Penpotu, javljamo UI-ju
 penpot.on('selectionchange', () => {
   const selection = penpot.selection;
   if (selection.length === 1 && selection[0].type === 'image') {
-    // Ako je slika, šaljemo podatke UI-ju
-    penpot.ui.sendMessage({
-      type: 'selection-change',
-      isValid: true,
-      name: selection[0].name,
-      id: selection[0].id
-    });
-    // Moramo eksportovati sliku da bismo dobili piksele
-    exportImageForProcessing(selection[0]);
+    exportImage(selection[0]);
   } else {
     penpot.ui.sendMessage({ type: 'selection-change', isValid: false });
   }
 });
 
-async function exportImageForProcessing(imageShape) {
+async function exportImage(shape) {
   try {
-    // Eksportujemo sliku kao PNG Blob
-    const blob = await imageShape.export({ type: 'png', scale: 1 }); // Scale 1 za performanse
+    penpot.ui.sendMessage({ type: 'selection-change', isValid: true });
+    const blob = await shape.export({ type: 'png', scale: 1 });
     const reader = new FileReader();
-    
-    reader.onload = function() {
-      // Šaljemo Base64 string u UI da bi Engine mogao da ga pročita
+    reader.onload = () => {
       penpot.ui.sendMessage({
         type: 'image-data',
         data: reader.result,
-        width: imageShape.width,
-        height: imageShape.height
+        width: shape.width,
+        height: shape.height
       });
     };
     reader.readAsDataURL(blob);
-  } catch (err) {
-    console.error("Export error:", err);
+  } catch (e) {
+    console.log(e);
   }
 }
