@@ -2,14 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Etch Test</title>
+    <title>Etch Plugin</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body { background: #333; color: white; padding: 20px; font-family: sans-serif; }
-        h1 { color: #00d084; }
+        /* Backup stilovi u slucaju da style.css kasni sa ucitavanjem */
+        body { background-color: #1e1e1e; color: #e0e0e0; font-family: sans-serif; overflow: hidden; }
+        .plugin-container { display: flex; flex-direction: column; height: 100vh; padding: 12px; box-sizing: border-box; }
     </style>
 </head>
 <body>
-    <h1>USPEH! 🚀</h1>
-    <p>Plugin je učitan kako treba.</p>
-</body>
-</html>
+    <div class="plugin-container">
+        <div class="header" style="display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px;">
+            <h3 style="margin:0; font-size: 11px; color: #888;">ETCH HALFTONE</h3>
+            <span class="status" id="status-dot" style="color: #555;">●</span>
+        </div>
+
+        <div class="controls" style="flex-grow: 1; overflow-y: auto;">
+            
+            <label style="font-size: 9px; font-weight: bold; color: #aaa; display: block; margin-bottom: 4px;">SHAPE</label>
+            <div class="shape-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 12px;">
+                <button class="shape-btn active" data-shape="circle" title="Circle" style="background: #333; border: 1px solid #444; color: #aaa; padding: 8px; cursor: pointer;">●</button>
+                <button class="shape-btn" data-shape="rect" title="Square" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer;">■</button>
+                <button class="shape-btn" data-shape="line" title="Line" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer;">━</button>
+                <button class="shape-btn" data-shape="cross" title="Cross" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer;">✚</button>
+            </div>
+
+            <label style="font-size: 9px; font-weight: bold; color: #aaa;">DENSITY (GRID SIZE)</label>
+            <div class="slider-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <input type="range" id="density" min="5" max="50" value="12" style="width: 70%;">
+                <span id="val-density" style="font-size: 10px; color: #00d084;">12px</span>
+            </div>
+
+            <label style="font-size: 9px; font-weight: bold; color: #aaa;">MAX SIZE</label>
+            <div class="slider-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <input type="range" id="size" min="0.1" max="1.5" step="0.1" value="1.0" style="width: 70%;">
+                <span id="val-size" style="font-size: 10px; color: #00d084;">1.0x</span>
+            </div>
+
+            <label style="font-size: 9px; font-weight: bold; color: #aaa;">ANGLE</label>
+            <div class="slider-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <input type="range"
