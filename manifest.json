@@ -1,9 +1,9 @@
 {
-  "name": "Etch Test",
-  "id": "com.etch.test",
+  "name": "Etch Halftone",
+  "id": "com.polygon.etch",
   "version": "1.0.0",
-  "description": "Test plugin",
-  "icon": "",
+  "description": "Vector generator",
+  "icon": "https://raw.githubusercontent.com/penpot/penpot/main/frontend/src/assets/images/logo.svg",
   "main": "index.html",
   "permissions": [
     "content:read",
