@@ -1,1 +1,1 @@
-{"name":"Etch Halftone","id":"com.polygon.etch","version":"1.0.0","description":"Vector generator","main":"index.html","permissions":["content:read","content:write"]}
+{"name":"Etch Halftone","id":"com.polygon.etch","version":"1.0.0","description":"Vector generator","main":"src/plugin.js","permissions":["content:read","content:write"]}
