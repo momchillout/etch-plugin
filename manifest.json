@@ -1,12 +1,1 @@
-{
-  "name": "Etch Halftone",
-  "id": "com.polygon.etch",
-  "version": "1.0.0",
-  "description": "Vector generator",
-  "icon": "https://raw.githubusercontent.com/penpot/penpot/main/frontend/src/assets/images/logo.svg",
-  "main": "index.html",
-  "permissions": [
-    "content:read",
-    "content:write"
-  ]
-}
+{"name":"Etch Halftone","id":"com.polygon.etch","version":"1.0.0","description":"Vector generator","main":"index.html","permissions":["content:read","content:write"]}
