@@ -1,6 +1,14 @@
 {
-  "name": "Etch Minimal",
-  "id": "etch-plugin-123",
-  "version": "1.0.0",
-  "main": "index.html"
+    "name": "Etch Plugin",
+    "id": "momchillout-etch-plugin",
+    "version": "1.0.0",
+    "description": "Opis tvog plugina za poligone",
+    "main": {
+        "url": "index.html"
+    },
+    "icon": "icon.png",
+    "permissions": [
+        "content:read",
+        "content:write"
+    ]
 }
