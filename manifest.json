@@ -1,14 +1,15 @@
 {
-    "name": "Etch Plugin",
-    "id": "momchillout-etch-plugin",
-    "version": "1.0.0",
-    "description": "Opis tvog plugina za poligone",
-    "main": {
-        "url": "index.html"
-    },
-    "icon": "icon.png",
-    "permissions": [
-        "content:read",
-        "content:write"
-    ]
+  "name": "Etch Plugin",
+  "id": "etch-plugin-momchillout",
+  "version": "1.0.0",
+  "description": "Polygon generation tool for Penpot",
+  "icon": "icon.png",
+  "main": {
+    "url": "index.html",
+    "type": "iframe"
+  },
+  "permissions": [
+    "content:read",
+    "content:write"
+  ]
 }
