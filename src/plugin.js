@@ -1,7 +1,7 @@
-/* MOZAK PLUGINA - Penpot Logic */
+/* MOZAK PLUGINA - Nalazi se u src/ folderu */
 
-// Otvaranje UI prozora - DODATO 'index.html' pre parametara
-penpot.ui.open("Etch Halftone", `index.html?theme=${penpot.theme}`, {
+// PAŽNJA: Koristimo "../index.html" jer je HTML u folderu iznad (root)
+penpot.ui.open("Etch Halftone", "../index.html?theme=" + penpot.theme, {
   width: 320,
   height: 600
 });
@@ -25,7 +25,6 @@ penpot.on('selectionchange', () => {
   if (selection.length === 1 && selection[0].type === 'image') {
     exportImage(selection[0]);
   } else {
-    // Obaveštavamo UI da selekcija nije validna (npr. nije slika)
     penpot.ui.sendMessage({ type: 'selection-change', isValid: false });
   }
 });
