@@ -1,13 +1,13 @@
 {
   "name": "Etch Plugin",
   "id": "etch-plugin-momcilo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Polygon generator for Penpot",
   "icon": "https://momchillout.github.io/etch-plugin/icon.png",
   "main": {
     "url": "https://momchillout.github.io/etch-plugin/index.html",
-    "type": "iframe",
-    "code": "index.html"
+    "code": "https://momchillout.github.io/etch-plugin/index.html",
+    "type": "iframe"
   },
   "permissions": []
 }
