@@ -1,9 +1,12 @@
-/* MOZAK PLUGINA */
-penpot.ui.open("Etch Halftone", `?theme=${penpot.theme}`, {
+/* MOZAK PLUGINA - Penpot Logic */
+
+// Otvaranje UI prozora - DODATO 'index.html' pre parametara
+penpot.ui.open("Etch Halftone", `index.html?theme=${penpot.theme}`, {
   width: 320,
   height: 600
 });
 
+// Slušanje poruka iz UI-ja (iz main.js/engine.js)
 penpot.ui.onMessage((message) => {
   if (message.type === 'create-svg') {
     const group = penpot.createShapeFromSvg(message.svgString);
@@ -16,15 +19,18 @@ penpot.ui.onMessage((message) => {
   }
 });
 
+// Detekcija selekcije slike na board-u
 penpot.on('selectionchange', () => {
   const selection = penpot.selection;
   if (selection.length === 1 && selection[0].type === 'image') {
     exportImage(selection[0]);
   } else {
+    // Obaveštavamo UI da selekcija nije validna (npr. nije slika)
     penpot.ui.sendMessage({ type: 'selection-change', isValid: false });
   }
 });
 
+// Funkcija za eksport slike i slanje u UI procesor
 async function exportImage(shape) {
   try {
     penpot.ui.sendMessage({ type: 'selection-change', isValid: true });
@@ -40,6 +46,6 @@ async function exportImage(shape) {
     };
     reader.readAsDataURL(blob);
   } catch (e) {
-    console.log(e);
+    console.error("Greška pri eksportu slike:", e);
   }
 }
