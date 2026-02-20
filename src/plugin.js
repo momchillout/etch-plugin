@@ -1,13 +1,14 @@
 /* MOZAK PLUGINA - src/plugin.js */
 
-// Koristimo punu putanju do root-a gde je index.html
-const uiUrl = "https://momchillout.github.io/etch-plugin/index.html";
+// PUNA PUTANJA DO TVOG INDEXA U ROOT-U
+const UI_URL = "https://momchillout.github.io/etch-plugin/index.html";
 
-penpot.ui.open("Etch Halftone", `${uiUrl}?theme=${penpot.theme}`, {
+penpot.ui.open("Etch Halftone", `${UI_URL}?theme=${penpot.theme}`, {
   width: 320,
   height: 600
 });
 
+// Slušanje poruka iz UI-ja
 penpot.ui.onMessage((message) => {
   if (message.type === 'create-svg') {
     const group = penpot.createShapeFromSvg(message.svgString);
@@ -20,6 +21,7 @@ penpot.ui.onMessage((message) => {
   }
 });
 
+// Detekcija selekcije
 penpot.on('selectionchange', () => {
   const selection = penpot.selection;
   if (selection.length === 1 && selection[0].type === 'image') {
@@ -44,6 +46,6 @@ async function exportImage(shape) {
     };
     reader.readAsDataURL(blob);
   } catch (e) {
-    console.error("Greška pri eksportu slike:", e);
+    console.error("Greška pri eksportu:", e);
   }
 }
