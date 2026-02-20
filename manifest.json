@@ -1,11 +1,16 @@
 {
-  "name": "Etch Plugin",
-  "id": "etch-plugin-momcilo",
-  "version": "1.0.5",
+  "name": "Etch Halftone",
+  "id": "etch-halftone-momcilo",
+  "version": "1.1.0",
+  "description": "Image to halftone vector converter",
+  "icon": "icon.png",
   "main": {
     "type": "iframe",
-    "url": "index.html"
+    "url": "https://momchillout.github.io/etch-plugin/index.html"
   },
-  "code": "plugin.js",
-  "permissions": ["content:read", "content:write"]
+  "code": "https://momchillout.github.io/etch-plugin/src/plugin.js",
+  "permissions": [
+    "content:read",
+    "content:write"
+  ]
 }
