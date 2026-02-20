@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* Backup stilovi u slucaju da style.css kasni sa ucitavanjem */
-        body { background-color: #1e1e1e; color: #e0e0e0; font-family: sans-serif; overflow: hidden; }
+        body { background-color: #1e1e1e; color: #e0e0e0; font-family: sans-serif; overflow: hidden; margin: 0; }
         .plugin-container { display: flex; flex-direction: column; height: 100vh; padding: 12px; box-sizing: border-box; }
+        input[type=range] { accent-color: #00d084; }
+        button:hover { background: #444 !important; border-color: #555 !important; }
+        .shape-btn.active { border-color: #00d084 !important; color: #00d084 !important; }
     </style>
 </head>
 <body>
@@ -21,10 +24,10 @@
             
             <label style="font-size: 9px; font-weight: bold; color: #aaa; display: block; margin-bottom: 4px;">SHAPE</label>
             <div class="shape-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 12px;">
-                <button class="shape-btn active" data-shape="circle" title="Circle" style="background: #333; border: 1px solid #444; color: #aaa; padding: 8px; cursor: pointer;">●</button>
-                <button class="shape-btn" data-shape="rect" title="Square" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer;">■</button>
-                <button class="shape-btn" data-shape="line" title="Line" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer;">━</button>
-                <button class="shape-btn" data-shape="cross" title="Cross" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer;">✚</button>
+                <button class="shape-btn active" data-shape="circle" title="Circle" style="background: #333; border: 1px solid #444; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">●</button>
+                <button class="shape-btn" data-shape="rect" title="Square" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">■</button>
+                <button class="shape-btn" data-shape="line" title="Line" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">━</button>
+                <button class="shape-btn" data-shape="cross" title="Cross" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">✚</button>
             </div>
 
             <label style="font-size: 9px; font-weight: bold; color: #aaa;">DENSITY (GRID SIZE)</label>
@@ -41,4 +44,19 @@
 
             <label style="font-size: 9px; font-weight: bold; color: #aaa;">ANGLE</label>
             <div class="slider-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-                <input type="range"
+                <input type="range" id="angle" min="0" max="90" value="0" style="width: 70%;">
+                <span id="val-angle" style="font-size: 10px; color: #00d084;">0°</span>
+            </div>
+
+            <div id="selection-msg" style="font-size: 10px; color: #666; text-align: center; margin-top: 20px;">
+                Select an image to start
+            </div>
+        </div>
+
+        <button id="btn-generate" disabled style="background: #00d084; color: #000; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 12px; opacity: 0.3;">GENERATE VECTOR</button>
+    </div>
+
+    <script src="engine.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
