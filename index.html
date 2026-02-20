@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Etch Plugin</title>
+    <title>Etch Halftone</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Backup stilovi u slucaju da style.css kasni sa ucitavanjem */
         body { background-color: #1e1e1e; color: #e0e0e0; font-family: sans-serif; overflow: hidden; margin: 0; }
         .plugin-container { display: flex; flex-direction: column; height: 100vh; padding: 12px; box-sizing: border-box; }
-        input[type=range] { accent-color: #00d084; }
+        input[type=range] { accent-color: #00d084; width: 70%; }
         button:hover { background: #444 !important; border-color: #555 !important; }
         .shape-btn.active { border-color: #00d084 !important; color: #00d084 !important; }
+        .slider-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+        label { font-size: 9px; font-weight: bold; color: #aaa; display: block; margin-bottom: 4px; text-transform: uppercase; }
+        span.value-display { font-size: 10px; color: #00d084; min-width: 30px; text-align: right; }
     </style>
 </head>
 <body>
@@ -21,42 +23,14 @@
         </div>
 
         <div class="controls" style="flex-grow: 1; overflow-y: auto;">
-            
-            <label style="font-size: 9px; font-weight: bold; color: #aaa; display: block; margin-bottom: 4px;">SHAPE</label>
+            <label>Shape</label>
             <div class="shape-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 12px;">
-                <button class="shape-btn active" data-shape="circle" title="Circle" style="background: #333; border: 1px solid #444; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">●</button>
-                <button class="shape-btn" data-shape="rect" title="Square" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">■</button>
-                <button class="shape-btn" data-shape="line" title="Line" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">━</button>
-                <button class="shape-btn" data-shape="cross" title="Cross" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">✚</button>
+                <button class="shape-btn active" data-shape="circle" style="background: #333; border: 1px solid #444; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">●</button>
+                <button class="shape-btn" data-shape="rect" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">■</button>
+                <button class="shape-btn" data-shape="line" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">━</button>
+                <button class="shape-btn" data-shape="cross" style="background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; cursor: pointer; border-radius: 4px;">✚</button>
             </div>
 
-            <label style="font-size: 9px; font-weight: bold; color: #aaa;">DENSITY (GRID SIZE)</label>
-            <div class="slider-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                <input type="range" id="density" min="5" max="50" value="12" style="width: 70%;">
-                <span id="val-density" style="font-size: 10px; color: #00d084;">12px</span>
-            </div>
-
-            <label style="font-size: 9px; font-weight: bold; color: #aaa;">MAX SIZE</label>
-            <div class="slider-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                <input type="range" id="size" min="0.1" max="1.5" step="0.1" value="1.0" style="width: 70%;">
-                <span id="val-size" style="font-size: 10px; color: #00d084;">1.0x</span>
-            </div>
-
-            <label style="font-size: 9px; font-weight: bold; color: #aaa;">ANGLE</label>
-            <div class="slider-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-                <input type="range" id="angle" min="0" max="90" value="0" style="width: 70%;">
-                <span id="val-angle" style="font-size: 10px; color: #00d084;">0°</span>
-            </div>
-
-            <div id="selection-msg" style="font-size: 10px; color: #666; text-align: center; margin-top: 20px;">
-                Select an image to start
-            </div>
-        </div>
-
-        <button id="btn-generate" disabled style="background: #00d084; color: #000; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 12px; opacity: 0.3;">GENERATE VECTOR</button>
-    </div>
-
-    <script src="engine.js"></script>
-    <script src="main.js"></script>
-</body>
-</html>
+            <label>Density (Grid Size)</label>
+            <div class="slider-row">
+                <input type="range" id="density
