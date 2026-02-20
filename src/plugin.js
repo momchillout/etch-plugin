@@ -1,12 +1,13 @@
-/* MOZAK PLUGINA - Nalazi se u src/ folderu */
+/* MOZAK PLUGINA - src/plugin.js */
 
-// PAŽNJA: Koristimo "../index.html" jer je HTML u folderu iznad (root)
-penpot.ui.open("Etch Halftone", "../index.html?theme=" + penpot.theme, {
+// Koristimo punu putanju do root-a gde je index.html
+const uiUrl = "https://momchillout.github.io/etch-plugin/index.html";
+
+penpot.ui.open("Etch Halftone", `${uiUrl}?theme=${penpot.theme}`, {
   width: 320,
   height: 600
 });
 
-// Slušanje poruka iz UI-ja (iz main.js/engine.js)
 penpot.ui.onMessage((message) => {
   if (message.type === 'create-svg') {
     const group = penpot.createShapeFromSvg(message.svgString);
@@ -19,7 +20,6 @@ penpot.ui.onMessage((message) => {
   }
 });
 
-// Detekcija selekcije slike na board-u
 penpot.on('selectionchange', () => {
   const selection = penpot.selection;
   if (selection.length === 1 && selection[0].type === 'image') {
@@ -29,7 +29,6 @@ penpot.on('selectionchange', () => {
   }
 });
 
-// Funkcija za eksport slike i slanje u UI procesor
 async function exportImage(shape) {
   try {
     penpot.ui.sendMessage({ type: 'selection-change', isValid: true });
